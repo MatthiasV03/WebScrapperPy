@@ -169,7 +169,20 @@ class ClientThread(thread.Thread):
         print(".." + nachname + "..")
         a2=""
         rr=0
-
+        for i in a:
+            if i =="[" or rr==1:
+                rr=1
+                print("Not included:" + i)
+                if i=="]":
+                    rr=0
+            else:
+                a2=a2+i
+        print("Name: " + name2)
+        print("Nachname: " + nachname)
+        print("Geboren: " + Geboren)
+        print("Geburtsort: " + Wohnort)
+        print("Arbeit-Unternehmen: " + Arbeit)
+        print("Bild: " + bild)
         self.speichern(name,Geboren,Wohnort,Arbeit,a2,bild)
         return (name2 + "|" + nachname + "|" + Geboren + "|" + Wohnort + "|" + Arbeit + "|" + a2+ "|" + bild + "|")
 
