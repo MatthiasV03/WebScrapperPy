@@ -92,7 +92,85 @@ class ClientThread(thread.Thread):
                     Wohnort = Wohnort + i
             if (i == "("):
                 o = 1
+        if Geboren == "":
+            Geboren = "zwischen "
+            b = a.find("zwischen") + 9
+            ii = 0
+            iii = 0
+            u = False
+            gw = 0
+            for i in a:
+                if gw == 1:
+                    if i == ",":
+                        break
+                    if iii == 1:
+                        Wohnort = Wohnort + i
+                    iii = 1
+                if ii >= b and gw == 0:
+                    if u == True:
+                        if i == "n":
+                            gw = 1
+                    if i == "i":
+                        u = True
+                    Geboren = Geboren + i
+                ii = ii + 1
+            Geboren = Geboren[:(-3)]
+        # -------------------------------------------------
+        b = a.find("ist ein ") + 8
+        b2 = a.find("war ein ") + 8
+        b3 = a.find("ist der ") + 8
+        b4 = a.find("war der ") + 8
+        ii = 0
+        # print(str(b) + "|" + str(b2))
+        if b == 7:
+            b = 1000
+        if b2 == 7:
+            b2 = 1000
+        if b3 == 7:
+            b3 = 1000
+        if b4 == 7:
+            b4 = 1000
+        itmp = "o"
+        for i in a:
+            if ii >= b or ii >= b2 or ii >= b3 or ii >= b4:
+                print(".")
+                if i == ".":
+                    print(itmp)
+                    if (itmp == str(1)) or (itmp == str(2)) or (itmp == str(3)) or (itmp == str(4)) or (
+                            itmp == str(5)) or (itmp == str(6)) or (itmp == str(7)) or (itmp == str(8)) or (
+                            itmp == str(9)) or (itmp == str(0)):
+                        pass
+                    else:
+                        print("iz")
+                        break
+                Arbeit = Arbeit + i
+            ii = ii + 1
+            itmp = i
+        try:
+            ny = wikipedia.page(wikipedia.suggest(name))
+        except:
+            ny = wikipedia.page(name)
+        for i in ny.images:
+            if name2 in i and nachname in i:
+                print(bild)
+                bild = i
+                break
+        if bild == "":
+            for i in ny.images:
+                if name2[:-1] in i:
+                    print(bild)
+                    bild = i
+                    break
 
+        if bild == "":
+            bild = ny.images[0]
+        print(bild)
+        print(".."+name2+"..")
+        print(".." + nachname + "..")
+        a2=""
+        rr=0
+
+        self.speichern(name,Geboren,Wohnort,Arbeit,a2,bild)
         return (name2 + "|" + nachname + "|" + Geboren + "|" + Wohnort + "|" + Arbeit + "|" + a2+ "|" + bild + "|")
 
 if __name__ == '__main__':
