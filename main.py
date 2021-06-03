@@ -23,6 +23,37 @@ class ClientThread(thread.Thread):
             print("Sended...")
             client_socket.recv(1024).decode('utf8')
 
+    def offline(self,name):
+        try:
+            file = open(name + ".txt", "r")
+            r = 0
+            while (r < 7):
+                print(r)
+                if r == 0:
+                    name2 = file.readline()[:-1]
+                if r == 1:
+                    nachname = file.readline()[:-1]
+                if r == 2:
+                    Geboren = file.readline()[:-1]
+                if r == 3:
+                    Wohnort = file.readline()[:-1]
+                if r == 4:
+                    Arbeit = file.readline()[:-1]
+                if r < 5:
+                    text = file.readline()[:-1]
+                if r == 6:
+                    bild = file.readline()[:-1]
+                r = r + 1
+
+            file.close()
+            print("Offline vorhanden!!...")
+            print(bild)
+            return (name2 + "|" + nachname + "|" + Geboren + "|" + Wohnort + "|" + Arbeit + "|" + text + "|" + bild + "|")
+        except:
+            print("Online Suche starten...")
+            return ""
+
+
     def wikisuche(self,name):
         name2 = ""
         nachname = ""
