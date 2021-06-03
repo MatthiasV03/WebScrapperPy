@@ -22,6 +22,25 @@ class ClientThread(thread.Thread):
             client_socket.send(Daten.encode("utf8"))
             print("Sended...")
             client_socket.recv(1024).decode('utf8')
+    def speichern(self,name,geboren,wohnort,arbeit,text,bild):
+        nachname2 = ""
+        name3=""
+        l = 0
+        l2 = 1
+        for i in name:
+            if (i == " "):
+                l = l + 1
+        for i in name:
+            if l == 101:
+                nachname2 = nachname2 + i
+            if i == " ":
+                if l == l2:
+                    l = 101
+                else:
+                    l2 = l2 + 1
+            if l != 101:
+                name3 = name3 + i
+
 
     def offline(self,name):
         try:
