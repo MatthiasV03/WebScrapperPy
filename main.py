@@ -40,6 +40,16 @@ class ClientThread(thread.Thread):
                     l2 = l2 + 1
             if l != 101:
                 name3 = name3 + i
+        file = open(name+".txt", "a")
+        file.write(name3 +"\n" + nachname2 +"\n" + geboren +"\n" + wohnort +"\n"+ arbeit + "\n")
+        for i in text:
+            try:
+                file.write(i)
+            except:
+                print("Busted:" + i)
+        file.write("\n"+bild)
+        file.close()
+        print("Gespeichert...")
 
 
     def offline(self,name):
